@@ -13,6 +13,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import me.sinz.library.SinZ
+import java.util.*
 
 class MainActivity : Activity() {
 
@@ -60,12 +61,13 @@ class MainActivity : Activity() {
         //한국 교통카드
         if (id != null) {
             val card = TMoney(id)
-            txt?.text = card.type + "\n" + card.balance + "원"
+            txt?.text = card.type + "\n" + String.format(Locale.KOREA, "%,d", card.balance) + "원"
         }
 
         //일본 교통카드
         else {
-
+            val card = FeliCa(tag)
+            txt?.text = "Suica 계열\n" + String.format(Locale.KOREA, "%,d", card.balance) + "엔"
         }
 
     }
